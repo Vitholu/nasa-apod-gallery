@@ -1,38 +1,21 @@
 import "./body.css";
-import React, {useEffect, useState} from 'react'
-import {fetchDataWithAxios} from "./request-pictures"
+import React from 'react'
 
 
 
 
 
-const Body = () => {
-
-  const [currentPic, setCurrentPic] = useState({})
-  
-
-  useEffect(() => {
-    const response = async () => {
-      const res = await fetchDataWithAxios();
-      setCurrentPic(res)
-    }
-
-    response();
-  }, [])
-
-  useEffect(() => {
-    console.log(`Second effect: ${currentPic}`)
-  })
-  
-// Return gallery element
+const Body = (props, {dataArray}) => {
+  console.log({dataArray});
   return (
     <ul className="scroll-gallery">
-      <li key={currentPic.date}><img src={currentPic.url} alt="" />
+      <li key={props.bool ? props.dataArray[props.id] : "Loading..."}><img src={props.thumbs ? props.dataArray[props.id].thumbnail_url 
+      : props.dataArray[props.id].url} alt="" />
         <div className="date-descr">
-          <h5>{currentPic.title}</h5>
-          <p>{currentPic.explanation}</p>
+          <h5>{props.bool ? props.dataArray[props.id].title : "Loading..."}</h5>
+          <p>{props.bool ? props.dataArray[props.id].explanation : "Loading..."}</p>
         </div>
-          <h6 className="date">Date: {currentPic.date}</h6>
+          <h6 className="date">Date: {props.bool ? props.dataArray[props.id].date : "Loading..."}</h6>
       </li>
     </ul>
   )

@@ -10,7 +10,7 @@ function App() {
           <Header />
       </header>
 
-      <div className="Body">
+      <div className="body">
         <div className="App-body">
             <Body />
         </div>

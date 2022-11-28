@@ -1,5 +1,7 @@
+import "./body.css";
 import React, {useEffect, useState} from 'react'
 import {fetchDataWithAxios} from "./request-pictures"
+
 
 
 
@@ -22,11 +24,17 @@ const Body = () => {
     console.log(`Second effect: ${currentPic}`)
   })
   
-
+// Return gallery element
   return (
-    <div className="body-gallery">
-      <img src={currentPic.url} alt="" />
-    </div>
+    <ul className="scroll-gallery">
+      <li key={currentPic.date}><img src={currentPic.url} alt="" />
+        <div className="date-descr">
+          <h5>{currentPic.title}</h5>
+          <p>{currentPic.explanation}</p>
+        </div>
+          <h6 className="date">Date: {currentPic.date}</h6>
+      </li>
+    </ul>
   )
 }
 

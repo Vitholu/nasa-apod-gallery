@@ -6,9 +6,18 @@ const baseUrl = "https://api.nasa.gov/planetary/apod?api_key=" + process.env.REA
 
 
 const fetchDataWithAxios = async () => {
-  
-  const { data } = await axios.get(baseUrl);
-  return data
+  try {
+    const { data } = await axios.get(baseUrl, { params: {
+      start_date: "2022-11-01",
+      end_date: "2022-11-28",
+      thumbs: true,
+    }
+    });
+    return data
+    
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const arrayPicturesAPOD = async () => {

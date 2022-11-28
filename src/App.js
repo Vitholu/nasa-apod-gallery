@@ -12,7 +12,8 @@ function App() {
 
       <div className="body">
         <div className="App-body">
-            <Body />
+            <Body id={0}/>
+            <Body id={1}/>
         </div>
       </div>
     </div>

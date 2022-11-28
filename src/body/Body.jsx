@@ -6,15 +6,16 @@ import {fetchDataWithAxios} from "./request-pictures"
 
 
 
-const Body = () => {
+const Body = (props) => {
 
-  const [currentPic, setCurrentPic] = useState({})
+  const [currentPic, setCurrentPic] = useState("Loading...")
   
 
   useEffect(() => {
     const response = async () => {
       const res = await fetchDataWithAxios();
       setCurrentPic(res)
+      console.log(res)
     }
 
     response();
@@ -24,15 +25,14 @@ const Body = () => {
     console.log(`Second effect: ${currentPic}`)
   })
   
-// Return gallery element
   return (
     <ul className="scroll-gallery">
-      <li key={currentPic.date}><img src={currentPic.url} alt="" />
+      <li key={currentPic[props.id].date}><img src={currentPic[props.id].thumbnail_url ? currentPic[props.id].thumbnail_url : currentPic[props.id].url} alt="" />
         <div className="date-descr">
-          <h5>{currentPic.title}</h5>
-          <p>{currentPic.explanation}</p>
+          <h5>{currentPic[props.id].title}</h5>
+          <p>{currentPic[props.id].explanation}</p>
         </div>
-          <h6 className="date">Date: {currentPic.date}</h6>
+          <h6 className="date">Date: {currentPic[props.id].date}</h6>
       </li>
     </ul>
   )

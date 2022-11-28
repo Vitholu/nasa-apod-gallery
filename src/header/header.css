@@ -1,0 +1,8 @@
+.header-font-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Parisienne', cursive;
+  font-size: 1.3rem;
+  padding-bottom: 3rem;
+}

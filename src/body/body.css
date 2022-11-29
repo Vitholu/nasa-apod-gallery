@@ -27,8 +27,17 @@ img {
 }
 
 .date {
-  border-top: 2px solid #011526;
-  padding: 8px 0;
   display: flex;
   justify-content: flex-end;
+}
+
+.scroll-gallery {
+  width: 240px;
+}
+
+.copy-date {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid #011526;
+  padding: 8px 0;
 }

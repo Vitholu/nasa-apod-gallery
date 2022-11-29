@@ -25,6 +25,7 @@ function App() {
   useEffect(() => {
     if (data.length !== 0) {
       console.log("thumn")
+
       setThumbnailURL(data.filter(x=> x.media_type === "video"))
     } 
     
@@ -39,9 +40,6 @@ function App() {
     if (dataArray.length !== 0 && data.length === 0) {
       setData(...data, dataArray)
     }
-    
-    useEffect(() => {
-    }, [id]);
     
     if (dataArray.length !== 0 && data.length !== 0 && thumbnailURL.length !== 0) {
       return <Body id={id} dataArray={dataArray} bool={true} thumbs={thumbnailURL}/>  

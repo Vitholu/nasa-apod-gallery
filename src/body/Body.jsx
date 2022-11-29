@@ -6,10 +6,7 @@ import React from 'react'
 
 
 const Body = (props, {dataArray}) => {
-  console.log(props.bool);
-
-
-
+  console.log(props);
   
   return (
     <ul className="scroll-gallery">
@@ -26,7 +23,10 @@ const Body = (props, {dataArray}) => {
           <h5>{props.bool ? props.dataArray[props.id].title : "Loading..."}</h5>
           <p>{props.bool ? props.dataArray[props.id].explanation : "Loading..."}</p>
         </div>
+        <div className="copy-date">
+          <h6 className="copyright">{props.dataArray[props.id].hasOwnProperty('copyright') ? "© " + props.dataArray[props.id].copyright : "No copyright holder"}</h6>
           <h6 className="date">Date: {props.bool ? props.dataArray[props.id].date : "Loading..."}</h6>
+        </div>
       </li>
     </ul>
   )

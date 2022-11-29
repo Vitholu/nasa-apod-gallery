@@ -7,35 +7,55 @@ import {FetchData} from "./body/RequestPictures.jsx"
 
 function App() {
 
-  const [dataArray, setDataArray] = useState(undefined)
-
-
+  const [dataArray, setDataArray] = useState([])
+  const [thumbnailURL, setThumbnailURL] = useState([])
+  
+  
   useEffect(() => {
-    if (dataArray === undefined) {
+    if (dataArray.length === 0) {
       FetchData({setDataArray})
       console.log(dataArray)
     }
-
+    
   }, [dataArray]);
+  
+  
+  const [data, setData] = useState([])
+  
+  useEffect(() => {
+    if (data.length !== 0) {
+      console.log("thumn")
+      setThumbnailURL(data.filter(x=> x.media_type === "video"))
+    } 
+    
+    return () => {
+      console.log("run: ")
+    }
+  }, [data])
 
 
   function LoadedDataArray(id) {
-    if (dataArray !== undefined) {
-      const data = [...dataArray]
-      if (data.find(x => x.media_type === "video")) {
-        return <Body id={id} dataArray={dataArray} bool={true} thumbs={true}/>
-      } else if(data.find(x => x.media_type === "image")){
-        return <Body id={id} dataArray={dataArray} bool={true} thumbs={false}/>
-      }
-      <Body id={id} dataArray={dataArray} bool={true} thumbs={false}/>
+
+    if (dataArray.length !== 0 && data.length === 0) {
+      setData(...data, dataArray)
     }
-  }
+    
+    useEffect(() => {
+    }, [id]);
+    
+    if (dataArray.length !== 0 && data.length !== 0 && thumbnailURL.length !== 0) {
+      return <Body id={id} dataArray={dataArray} bool={true} thumbs={thumbnailURL}/>  
+    } else if (dataArray.length !== 0 && data.length !== 0) {
+      return <Body id={id} dataArray={dataArray} bool={false} thumbs={thumbnailURL}/>  
+    }
 
-
-
-
-  return (
-    <>
+  
+  }    
+    
+    
+    
+    return (
+      <>
     <div className="App">
       <header className="App-header">
           <Header />

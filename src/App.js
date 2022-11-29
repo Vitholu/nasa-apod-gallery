@@ -9,7 +9,7 @@ function App() {
 
   const [dataArray, setDataArray] = useState([])
   const [thumbnailURL, setThumbnailURL] = useState([])
-  
+  const [noVideo, setNoVideo] = useState(false)
   
   useEffect(() => {
     if (dataArray.length === 0) {
@@ -25,7 +25,9 @@ function App() {
   useEffect(() => {
     if (data.length !== 0) {
       console.log("thumn")
-
+      if (!data.filter(x=> x.media_type === "video")) {
+        setNoVideo(true)
+      }
       setThumbnailURL(data.filter(x=> x.media_type === "video"))
     } 
     
@@ -44,7 +46,7 @@ function App() {
     if (dataArray.length !== 0 && data.length !== 0 && thumbnailURL.length !== 0) {
       return <Body id={id} dataArray={dataArray} bool={true} thumbs={thumbnailURL}/>  
     } else if (dataArray.length !== 0 && data.length !== 0) {
-      return <Body id={id} dataArray={dataArray} bool={false} thumbs={thumbnailURL}/>  
+      return <Body id={id} dataArray={dataArray} bool={noVideo} thumbs={thumbnailURL}/>  
     }
 
   

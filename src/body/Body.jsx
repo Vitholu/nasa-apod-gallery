@@ -2,20 +2,13 @@ import "./body.css";
 import React from 'react'
 
 
-
-
-
 const Body = (props, {dataArray}) => {
   console.log(props);
   
   return (
     <ul className="scroll-gallery">
       <li key={props.bool ? props.dataArray[props.id] : "Loading..."}>
-
-        {}
-
         <img src={
-
         props.dataArray[props.id].thumbnail_url !== undefined ? 
         (props.dataArray[props.id].thumbnail_url !== "Loading..." ? props.dataArray[props.id].thumbnail_url : props.dataArray[props.id].url) 
         : props.dataArray[props.id].url} alt="" />

@@ -8,8 +8,7 @@ const baseUrl = "https://api.nasa.gov/planetary/apod?api_key=" + process.env.REA
 const FetchData = async ({setDataArray}) => {
   try {
     const { data } = await axios.get(baseUrl, { params: {
-      start_date: "2022-11-01",
-      end_date: "2022-11-28",
+      count: "12",
       thumbs: true,
     }
     });

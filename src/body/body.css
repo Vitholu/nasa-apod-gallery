@@ -29,6 +29,7 @@ img {
 .date {
   display: flex;
   justify-content: flex-end;
+  min-width: 77.13px;
 }
 
 .scroll-gallery {

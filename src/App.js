@@ -1,58 +1,57 @@
 import './App.css';
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useRef, useCallback} from "react"
 import Header from "./header/Header.jsx"
 import Body from "./body/Body.jsx"
 import {FetchData} from "./body/RequestPictures.jsx"
-
+const _ = require("lodash")
 
 function App() {
 
   const [dataArray, setDataArray] = useState([])
   const [thumbnailURL, setThumbnailURL] = useState([])
-  const [noVideo, setNoVideo] = useState(false)
+  const [mapData, setMapData] = useState([])
+  const [listKey, setListKey] = useState(0)
+
+  const [prevId, setPrevId] = useState(12)
+  const [toggleScroll, setToggleScroll] = useState(true)
   
+  const AppBodyRef = useRef(null)
+  
+
+  // Clear mapped array
+  if (!_.isEqual(mapData, dataArray)) {
+    console.log(dataArray);
+    setMapData(dataArray.map(x => x))
+  }
+
+
+
   useEffect(() => {
-    if (dataArray.length === 0) {
-      FetchData({setDataArray})
+    if (dataArray.length === 0 || dataArray.length < 12) {
+      FetchData(12, {setDataArray, dataArray})
       console.log(dataArray)
     }
-    
   }, [dataArray]);
   
   
-  const [data, setData] = useState([])
   
   useEffect(() => {
-    if (data.length !== 0) {
+    if (mapData.length !== 0) {
       console.log("thumn")
-      if (!data.filter(x=> x.media_type === "video")) {
-        setNoVideo(true)
-      }
-      setThumbnailURL(data.filter(x=> x.media_type === "video"))
+      setThumbnailURL(mapData.filter(x=> x.media_type === "video"))
     } 
     
     return () => {
-      console.log("run: ")
+      console.log("Clean up: 4")
     }
-  }, [data])
+  }, [mapData])
 
-
-  function LoadedDataArray(id) {
-
-    if (dataArray.length !== 0 && data.length === 0) {
-      setData(...data, dataArray)
-    }
-    
-    if (dataArray.length !== 0 && data.length !== 0 && thumbnailURL.length !== 0) {
-      return <Body id={id} dataArray={dataArray} bool={true} thumbs={thumbnailURL}/>  
-    } else if (dataArray.length !== 0 && data.length !== 0) {
-      return <Body id={id} dataArray={dataArray} bool={noVideo} thumbs={thumbnailURL}/>  
-    }
+  const handleClick = () => {
+    FetchData(12, {setDataArray, dataArray})
+    setToggleScroll(!toggleScroll)
+  }
 
   
-  }    
-    
-    
     
     return (
       <>
@@ -62,19 +61,19 @@ function App() {
       </header>
 
       <div className="body">
-        <div className="App-body">
-          {LoadedDataArray(0)}
-          {LoadedDataArray(1)}
-          {LoadedDataArray(2)}
-          {LoadedDataArray(3)}
-          {LoadedDataArray(4)}
-          {LoadedDataArray(5)}
-          {LoadedDataArray(6)}
-          {LoadedDataArray(7)}
-          {LoadedDataArray(8)}
-          {LoadedDataArray(9)}
-          {LoadedDataArray(10)}
-          {LoadedDataArray(11)}
+        <div className="App-body" ref={AppBodyRef}>
+
+          {
+            mapData.map(card => {
+              return <Body id={listKey} dataArray={card} bool={false} thumbs={thumbnailURL}/>  
+            })
+          } 
+
+          <button onClick={handleClick}>
+            {
+              "Load More"
+            }
+          </button>
         </div>
       </div>
     </div>
@@ -83,3 +82,11 @@ function App() {
 }
 
 export default App;
+
+
+/* 
+  Use map to get 12 posts
+  Clear the array after rendering 12 posts
+  render array onClick
+  Request new array onClick with the default value being 12 posts
+*/

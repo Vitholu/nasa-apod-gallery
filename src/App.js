@@ -3,6 +3,9 @@ import React, {useState, useEffect} from "react"
 import Header from "./header/Header.jsx"
 import Body from "./body/Body.jsx"
 import {FetchData} from "./body/RequestPictures.jsx"
+import { v4 as uuidv4 } from 'uuid';
+
+
 const _ = require("lodash")
 
 function App() {
@@ -12,13 +15,12 @@ function App() {
   const [mapData, setMapData] = useState([])
 
 
-  const [toggleScroll, setToggleScroll] = useState(true)
+  const [toggleScroll, setToggleScroll] = useState(true) // useless?
   
   
 
   // Clear mapped array
   if (!_.isEqual(mapData, dataArray)) {
-    console.log(dataArray);
     setMapData(dataArray.map(x => x))
   }
 
@@ -35,12 +37,10 @@ function App() {
   
   useEffect(() => {
     if (mapData.length !== 0) {
-      console.log("thumn")
       setThumbnailURL(mapData.filter(x=> x.media_type === "video"))
     } 
     
     return () => {
-      console.log("Clean up: 4")
     }
   }, [mapData])
 
@@ -63,7 +63,7 @@ function App() {
 
           {
             mapData.map(card => {
-              return <Body dataArray={card} bool={false} thumbs={thumbnailURL}/>  
+              return <Body key={uuidv4()} dataArray={card} bool={_.isEmpty(card) ? false : true} thumbs={thumbnailURL}/>  
             })
           } 
 
@@ -87,4 +87,11 @@ export default App;
   Clear the array after rendering 12 posts
   render array onClick
   Request new array onClick with the default value being 12 posts
+*/
+
+/* 
+  if thumbnail exists,
+  render thumbnail. Or
+  send thumbnail instead of url.
+
 */

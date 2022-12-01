@@ -18,10 +18,10 @@ const FetchData = async (prevID, {setDataArray, dataArray}) => {
       }
     });
     if (!_.isEqual(data, dataArray)) {
-      console.log(data)
+      // console.log(data)
       const combinedArray = [...dataArray, ...data]
       setDataArray(combinedArray)
-      console.log(dataArray);
+      // console.log(dataArray);
     } else {
       console.log("no data yet");
     }

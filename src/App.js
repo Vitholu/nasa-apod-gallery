@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState, useEffect} from "react"
 import Header from "./header/Header.jsx"
 import Body from "./body/Body.jsx"
+import Footer from "./footer/Footer.jsx"
 import {FetchData} from "./body/RequestPictures.jsx"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -46,30 +47,30 @@ function App() {
   
     
     return (
-      <>
+      
     <div className="App">
       <header className="App-header">
           <Header />
       </header>
 
-      <div className="body">
-        <div className="App-body">
 
-          {
-            mapData.map(card => {
-              return <Body key={uuidv4()} dataArray={card} bool={_.isEmpty(card) ? false : true} thumbs={thumbnailURL}/>  
-            })
-          } 
+      <div className="App-body">
+        {
+          mapData.map(card => {
+            return <Body key={uuidv4()} dataArray={card} bool={_.isEmpty(card) ? false : true} thumbs={thumbnailURL}/>  
+          })
+        } 
+        <button className="loader" onClick={handleClick}>
+          {"Load More"}
+        </button>
+      </div>
 
-          <button onClick={handleClick}>
-            {
-              "Load More"
-            }
-          </button>
-        </div>
+
+      <div className="App-footer">
+        <Footer />
       </div>
     </div>
-    </>
+
   );
 }
 

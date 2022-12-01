@@ -1,0 +1,15 @@
+.App {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.loader {
+  background-color: #012340;
+  color: white;
+  padding: 0.7rem 3rem;
+  border: 2px solid silver;
+  border-radius: 15px;
+  margin: 1rem;
+  margin-bottom: 4rem;
+}

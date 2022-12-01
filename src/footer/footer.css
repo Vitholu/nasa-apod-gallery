@@ -1,0 +1,11 @@
+.App-footer {
+  height: 4rem;
+}
+
+.footer-bg {
+  position: fixed;
+  top: calc(100vh - 4rem);
+  background-color: #011526;
+  width: 100vw;
+  height: 4rem;
+}

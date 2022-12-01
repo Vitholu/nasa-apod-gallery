@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect, useRef, useCallback} from "react"
+import React, {useState, useEffect} from "react"
 import Header from "./header/Header.jsx"
 import Body from "./body/Body.jsx"
 import {FetchData} from "./body/RequestPictures.jsx"
@@ -10,12 +10,10 @@ function App() {
   const [dataArray, setDataArray] = useState([])
   const [thumbnailURL, setThumbnailURL] = useState([])
   const [mapData, setMapData] = useState([])
-  const [listKey, setListKey] = useState(0)
 
-  const [prevId, setPrevId] = useState(12)
+
   const [toggleScroll, setToggleScroll] = useState(true)
   
-  const AppBodyRef = useRef(null)
   
 
   // Clear mapped array
@@ -61,11 +59,11 @@ function App() {
       </header>
 
       <div className="body">
-        <div className="App-body" ref={AppBodyRef}>
+        <div className="App-body">
 
           {
             mapData.map(card => {
-              return <Body id={listKey} dataArray={card} bool={false} thumbs={thumbnailURL}/>  
+              return <Body dataArray={card} bool={false} thumbs={thumbnailURL}/>  
             })
           } 
 

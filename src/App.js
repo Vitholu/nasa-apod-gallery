@@ -3,54 +3,47 @@ import React, {useState, useEffect} from "react"
 import Header from "./header/Header.jsx"
 import Body from "./body/Body.jsx"
 import {FetchData} from "./body/RequestPictures.jsx"
+import { v4 as uuidv4 } from 'uuid';
 
+
+const _ = require("lodash")
 
 function App() {
 
   const [dataArray, setDataArray] = useState([])
   const [thumbnailURL, setThumbnailURL] = useState([])
+  const [mapData, setMapData] = useState([])
   
   
+  if (!_.isEqual(mapData, dataArray)) {
+    setMapData(dataArray.map(x => x))
+  }
+
+
+
   useEffect(() => {
-    if (dataArray.length === 0) {
-      FetchData({setDataArray})
+    if (dataArray.length === 0 || dataArray.length < 12) {
+      FetchData(12, {setDataArray, dataArray})
       console.log(dataArray)
     }
-    
   }, [dataArray]);
   
   
-  const [data, setData] = useState([])
   
   useEffect(() => {
-    if (data.length !== 0) {
-      console.log("thumn")
-
-      setThumbnailURL(data.filter(x=> x.media_type === "video"))
+    if (mapData.length !== 0) {
+      setThumbnailURL(mapData.filter(x=> x.media_type === "video"))
     } 
     
     return () => {
-      console.log("run: ")
     }
-  }, [data])
+  }, [mapData])
 
-
-  function LoadedDataArray(id) {
-
-    if (dataArray.length !== 0 && data.length === 0) {
-      setData(...data, dataArray)
-    }
-    
-    if (dataArray.length !== 0 && data.length !== 0 && thumbnailURL.length !== 0) {
-      return <Body id={id} dataArray={dataArray} bool={true} thumbs={thumbnailURL}/>  
-    } else if (dataArray.length !== 0 && data.length !== 0) {
-      return <Body id={id} dataArray={dataArray} bool={false} thumbs={thumbnailURL}/>  
-    }
+  const handleClick = () => {
+    FetchData(12, {setDataArray, dataArray})
+  }
 
   
-  }    
-    
-    
     
     return (
       <>
@@ -61,18 +54,18 @@ function App() {
 
       <div className="body">
         <div className="App-body">
-          {LoadedDataArray(0)}
-          {LoadedDataArray(1)}
-          {LoadedDataArray(2)}
-          {LoadedDataArray(3)}
-          {LoadedDataArray(4)}
-          {LoadedDataArray(5)}
-          {LoadedDataArray(6)}
-          {LoadedDataArray(7)}
-          {LoadedDataArray(8)}
-          {LoadedDataArray(9)}
-          {LoadedDataArray(10)}
-          {LoadedDataArray(11)}
+
+          {
+            mapData.map(card => {
+              return <Body key={uuidv4()} dataArray={card} bool={_.isEmpty(card) ? false : true} thumbs={thumbnailURL}/>  
+            })
+          } 
+
+          <button onClick={handleClick}>
+            {
+              "Load More"
+            }
+          </button>
         </div>
       </div>
     </div>
@@ -81,3 +74,5 @@ function App() {
 }
 
 export default App;
+
+

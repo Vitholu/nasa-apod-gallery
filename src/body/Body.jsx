@@ -3,29 +3,22 @@ import React from 'react'
 
 
 
-
-
 const Body = (props, {dataArray}) => {
-  console.log(props);
   
+  
+
   return (
-    <ul className="scroll-gallery">
-      <li key={props.bool ? props.dataArray[props.id] : "Loading..."}>
-
-        {}
-
-        <img src={
-
-        props.dataArray[props.id].thumbnail_url !== undefined ? 
-        (props.dataArray[props.id].thumbnail_url !== "Loading..." ? props.dataArray[props.id].thumbnail_url : props.dataArray[props.id].url) 
-        : props.dataArray[props.id].url} alt="" />
+    <ul className="scroll-gallery" >
+      {console.log(props.dataArray.hasOwnProperty("thumbnail_url") ? props.dataArray.thumbnail_url : "no thumbs")}
+      <li>
+        <img src={ props.bool ? (props.dataArray.hasOwnProperty("thumbnail_url") ? props.dataArray.thumbnail_url : props.dataArray.url) : "Loading..."} alt="" />
         <div className="date-descr">
-          <h5>{props.bool ? props.dataArray[props.id].title : "Loading..."}</h5>
-          <p>{props.bool ? props.dataArray[props.id].explanation : "Loading..."}</p>
+          <h5>{props.bool ? props.dataArray.title : "Loading..."}</h5>
+          <p>{props.bool ? props.dataArray.explanation : "Loading..."}</p>
         </div>
         <div className="copy-date">
-          <h6 className="copyright">{props.dataArray[props.id].hasOwnProperty('copyright') ? "© " + props.dataArray[props.id].copyright : "No copyright holder"}</h6>
-          <h6 className="date">Date: {props.bool ? props.dataArray[props.id].date : "Loading..."}</h6>
+          <h6 className="copyright">{props.bool ? (props.dataArray.hasOwnProperty('copyright') ? "© " + props.dataArray.copyright : "No copyright holder") : "Loading..."}</h6>
+          <h6 className="date">Date: {props.bool ? props.dataArray.date : "Loading..."}</h6>
         </div>
       </li>
     </ul>

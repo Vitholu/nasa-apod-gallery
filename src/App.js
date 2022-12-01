@@ -13,13 +13,8 @@ function App() {
   const [dataArray, setDataArray] = useState([])
   const [thumbnailURL, setThumbnailURL] = useState([])
   const [mapData, setMapData] = useState([])
-
-
-  const [toggleScroll, setToggleScroll] = useState(true) // useless?
   
   
-
-  // Clear mapped array
   if (!_.isEqual(mapData, dataArray)) {
     setMapData(dataArray.map(x => x))
   }
@@ -46,7 +41,6 @@ function App() {
 
   const handleClick = () => {
     FetchData(12, {setDataArray, dataArray})
-    setToggleScroll(!toggleScroll)
   }
 
   
@@ -82,16 +76,3 @@ function App() {
 export default App;
 
 
-/* 
-  Use map to get 12 posts
-  Clear the array after rendering 12 posts
-  render array onClick
-  Request new array onClick with the default value being 12 posts
-*/
-
-/* 
-  if thumbnail exists,
-  render thumbnail. Or
-  send thumbnail instead of url.
-
-*/

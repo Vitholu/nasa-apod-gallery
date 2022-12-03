@@ -5,7 +5,7 @@ import Body from "./components/body/Body.jsx"
 import Footer from "./components/footer/Footer.jsx"
 import {FetchData} from "./components/body/RequestPictures.jsx"
 import { v4 as uuidv4 } from 'uuid'
-import Modal from "./components/modal/Modal.jsx"
+import Modal from "./features/modal/Modal.jsx"
 import store from "./store.js"
 import { Provider } from "react-redux"
 
@@ -19,6 +19,8 @@ function App() {
   const [mapData, setMapData] = useState([])
   
   
+
+
   if (!_.isEqual(mapData, dataArray)) {
     setMapData(dataArray.map(x => x))
   }
@@ -50,6 +52,7 @@ function App() {
     
     return (
     <Provider store={store}>
+      
       <div className="App">
         <header className="App-header">
             <Header />

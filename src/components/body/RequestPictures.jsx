@@ -3,7 +3,7 @@ import axios from "axios";
 const _ = require('lodash')
 
 
-const baseUrl = "https://api.nasa.gov/planetary/apod?api_key=" + process.env.REACT_APP_API_KEY;
+const baseUrl = "https://api.nasa.gov/planetary/apod?api_key=" + process.env.REACT_APP_APOD_API_KEY;
 
 
 

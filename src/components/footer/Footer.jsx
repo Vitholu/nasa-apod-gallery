@@ -1,6 +1,6 @@
 import "./footer.css"
-import ProfileIcon from "../assets/profile_icon.svg"
-import FavoriteIcon from "../assets/bookmark_icon.svg"
+import ProfileIcon from "../../assets/profile_icon.svg"
+import FavoriteIcon from "../../assets/bookmark_icon.svg"
 
 import React from 'react'
 

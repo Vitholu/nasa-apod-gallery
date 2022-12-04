@@ -9,7 +9,6 @@ const Body = (props, {dataArray}) => {
 
   return (
     <ul className="scroll-gallery" >
-      {console.log(props.dataArray.hasOwnProperty("thumbnail_url") ? props.dataArray.thumbnail_url : "no thumbs")}
       <li>
         <img src={ props.bool ? (props.dataArray.hasOwnProperty("thumbnail_url") ? props.dataArray.thumbnail_url : props.dataArray.url) : "Loading..."} alt="" />
         <div className="date-descr">

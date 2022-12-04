@@ -6,3 +6,9 @@
   font-size: 1.3rem;
   padding-bottom: 3rem;
 }
+.succesful-login-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

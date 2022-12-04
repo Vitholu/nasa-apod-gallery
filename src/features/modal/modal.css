@@ -1,3 +1,29 @@
-.bg-gray-modal {
-  background-color: gray !important;
+.email-pass-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  display: flex;
+  justify-content: center;
+}
+
+label > p {
+  margin: 0;
+  width: 85px;
+}
+
+.submit {
+  display: flex;
+  margin: 2rem auto;
+  padding: 0.5rem 3rem;
+}
+
+.register {
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  margin: 1rem auto;
+  margin-bottom: 2rem;
 }

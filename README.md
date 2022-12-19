@@ -1,1 +1,1 @@
-Have a space themed website that uses the Nasa APOD API to retrieve images and display them based on day. To make it more complex, add user authentication and allow them to save some images.
+A gallery that uses the Nasa APOD API to retrieve images and display them adding a new one each day.

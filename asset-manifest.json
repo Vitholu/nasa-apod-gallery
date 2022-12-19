@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nasa-apod-gallery/static/css/main.da131973.css",
+    "main.js": "/nasa-apod-gallery/static/js/main.94dafe0c.js",
+    "index.html": "/nasa-apod-gallery/index.html",
+    "static/media/profile_icon.svg": "/nasa-apod-gallery/static/media/profile_icon.c41c3df43d7b147c66841f55b6822b62.svg",
+    "static/media/bookmark_icon.svg": "/nasa-apod-gallery/static/media/bookmark_icon.06810e0ca090e7083b425d4e045378f5.svg",
+    "main.da131973.css.map": "/nasa-apod-gallery/static/css/main.da131973.css.map",
+    "main.94dafe0c.js.map": "/nasa-apod-gallery/static/js/main.94dafe0c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da131973.css",
+    "static/js/main.94dafe0c.js"
+  ]
+}
